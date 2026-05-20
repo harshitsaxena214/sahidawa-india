@@ -73,7 +73,7 @@ export default function ComparePage() {
     </div>
   );
 }
-=======
+
 import { CalendarDays, Download, Pill, Printer, ShieldCheck } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { PageHeader } from "../components/PageHeader";
