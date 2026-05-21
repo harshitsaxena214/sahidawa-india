@@ -306,6 +306,66 @@ sahidawa-india/
 
 ---
 
+## Docker Setup
+
+Contributors can run the complete multi-service stack locally using Docker Compose.
+
+### Prerequisites
+
+Ensure the following are installed:
+
+- Docker
+- Docker Compose
+
+Verify installation:
+
+```bash
+docker --version
+docker compose version
+```
+
+> **Note:** The database is not started through Docker Compose. Start Supabase separately in another terminal:
+
+```bash
+npx supabase start
+```
+
+### Start Services
+
+Build and start all services:
+
+```bash
+docker compose up --build
+```
+
+This command starts:
+
+- Next.js frontend (`web`)
+- Express API (`api`)
+- FastAPI ML service (`ml`)
+- Redis
+
+### Service URLs
+
+After startup, the services will be available at:
+
+| Service            | URL                   | Port |
+| ------------------ | --------------------- | ---- |
+| Next.js Frontend   | http://localhost:3000 | 3000 |
+| Express API        | http://localhost:4000 | 4000 |
+| FastAPI ML Service | http://localhost:8000 | 8000 |
+| Redis              | localhost:6379        | 6379 |
+
+### Stop Services
+
+Stop all containers:
+
+```bash
+docker compose down
+```
+
+---
+
 ## 🤝 Contributing
 
 We love contributions! SahiDawa is built entirely by the community.
