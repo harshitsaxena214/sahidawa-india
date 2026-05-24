@@ -220,7 +220,7 @@ def test_validation_failure_log_includes_required_debug_fields(tmp_path, capsys)
     assert log["error_category"] == "validation_error"
 
 
-def test_summary_prints_alert_when_success_rate_is_below_threshold(tmp_path, capsys):
+def test_summary_prints_alert_when_success_rate_is_below_threshold(tmp_path, caplog):
     client = FakeSupabaseClient(fail_batches=True, fail_generic_names={"Bad Float"})
     loader = make_loader(client, tmp_path)
     df = pd.DataFrame(
@@ -233,7 +233,7 @@ def test_summary_prints_alert_when_success_rate_is_below_threshold(tmp_path, cap
     stats = loader.load(df)
 
     assert stats["success_rate"] == 50.0
-    output = capsys.readouterr().out
+    output = caplog.text
     assert "ALERT" in output
     assert "95%" in output
 
