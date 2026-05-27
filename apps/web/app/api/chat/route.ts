@@ -164,6 +164,7 @@ export async function POST(req: Request) {
         const finalLocale = supportedLocales.includes(locale) ? locale : "en";
         const localeMap = {
             en: "English",
+            hi: "Hindi",
             bn: "Bengali",
             gu: "Gujarati",
             kn: "Kannada",
@@ -172,7 +173,7 @@ export async function POST(req: Request) {
             te: "Telugu",
             ur: "Urdu",
         };
-        const language = localeMap[finalLocale as keyof typeof localeMap];
+        const language = localeMap[finalLocale as keyof typeof localeMap] || "English";
         const systemPrompt = BASE_PROMPT.replace("{language}", language);
 
         const response = await ai.models.generateContent({
